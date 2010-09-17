@@ -24,6 +24,12 @@
  * @copyright: Copyright (C) 2009, Jan Konieczny
  */
 
+/**
+ * Provides basic cron syntax parsing functionality
+ * 
+ * @author:  Jan Konieczny <jkonieczny@gmail.com>
+ * @copyright: Copyright (C) 2009, Jan Konieczny
+ */
 class Crontab {
    /**
      *  Finds next execution time(stamp) parsin crontab syntax, 
@@ -43,15 +49,18 @@ class Crontab {
      *  @param int $_after_timestamp timestamp [default=current timestamp]
      *  @return int unix timestamp - next execution time will be greater 
      *              than given timestamp (defaults to the current timestamp)
+     *  @throws InvalidArgumentException 
      */
     public static function parse($_cron_string,$_after_timestamp=null)
     {
         if(!preg_match('/^((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)$/i',trim($_cron_string))){
-            return false;
+            throw new InvalidArgumentException("Invalid cron string: ".$_cron_string);
+        }
+        if($_after_timestamp && !is_numeric($_after_timestamp)){
+            throw new InvalidArgumentException("\$_after_timestamp must be a valid unix timestamp ($_after_timestamp given)");
         }
         $cron   = preg_split("/[\s]+/i",trim($_cron_string));
         $start  = empty($_after_timestamp)?time():$_after_timestamp;
-        $start += 60; //just in case;
 
         $date   = array(    'minutes'   =>self::_parseCronNumbers($cron[0],0,59),
                             'hours'     =>self::_parseCronNumbers($cron[1],0,23),
@@ -59,8 +68,7 @@ class Crontab {
                             'month'     =>self::_parseCronNumbers($cron[3],1,12),
                             'dow'       =>self::_parseCronNumbers($cron[4],0,6),
                         );
-        // can run on TS current day?
-        //var_dump($date['dow']);
+        // limited to time()+366 - no need to check more than 1year ahead
         for($i=0;$i<=60*60*24*366;$i+=60){
             if( in_array(intval(date('j',$start+$i)),$date['dom']) &&
                 in_array(intval(date('n',$start+$i)),$date['month']) &&
