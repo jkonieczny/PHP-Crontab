@@ -73,7 +73,6 @@ class Crontab {
             if( in_array(intval(date('j',$start+$i)),$date['dom']) &&
                 in_array(intval(date('n',$start+$i)),$date['month']) &&
                 in_array(intval(date('w',$start+$i)),$date['dow']) &&
-                in_array(intval(date('w',$start+$i)),$date['dow']) &&
                 in_array(intval(date('G',$start+$i)),$date['hours']) &&
                 in_array(intval(date('i',$start+$i)),$date['minutes'])
 
