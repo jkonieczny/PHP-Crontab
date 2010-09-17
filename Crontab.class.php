@@ -1,5 +1,8 @@
 <?php
 /**
+ *  @author:  Jan Konieczny <jkonieczny@gmail.com>
+ *  @copyright: Copyright (C) 2009, Jan Konieczny
+ * 
  *  This is a simple script to parse crontab syntax to get the execution time
  * 
  *  Eg.:   $timestamp = Crontab::parse('12 * * * 1-5');
@@ -17,11 +20,6 @@
  * 
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
- * 
- * @author:  Jan Konieczny <jkonieczny@gmail.com>
- * @copyright: Copyright (C) 2009, Jan Konieczny
  */
 
 /**
