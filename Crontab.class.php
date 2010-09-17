@@ -37,13 +37,13 @@ class Crontab {
      * 
      *  @param string $_cron_string:
      *
-     *      0     1   2   3    4
-     *      *     *   *   *    *  
+     *      0     1    2    3    4
+     *      *     *    *    *    *  
      *      -     -    -    -    -
-     *      |     |     |     |     |
-     *      |     |     |     |     +----- day of week (0 - 6) (Sunday=0)
-     *      |     |     |     +------- month (1 - 12)
-     *      |     |     +--------- day of month (1 - 31)
+     *      |     |    |    |    |
+     *      |     |    |    |    +----- day of week (0 - 6) (Sunday=0)
+     *      |     |    |    +------- month (1 - 12)
+     *      |     |    +--------- day of month (1 - 31)
      *      |     +----------- hour (0 - 23)
      *      +------------- min (0 - 59)
      *  @param int $_after_timestamp timestamp [default=current timestamp]
