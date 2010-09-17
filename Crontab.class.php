@@ -2,7 +2,7 @@
 /**
  *  This is a simple script to parse crontab syntax to get the execution time
  * 
- *  Eg.:   $timestamp = Crontab::parse('12 * * * [1-5]');
+ *  Eg.:   $timestamp = Crontab::parse('12 * * * 1-5');
  * 
  * 
  *  This program is free software: you can redistribute it and/or modify
