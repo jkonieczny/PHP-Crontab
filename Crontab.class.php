@@ -67,13 +67,14 @@ class Crontab {
                             'dow'       =>self::_parseCronNumbers($cron[4],0,6),
                         );
         // limited to time()+366 - no need to check more than 1year ahead
+        $compareDateFormat = 'j|n|w|g|i';
         for($i=0;$i<=60*60*24*366;$i+=60){
             if( in_array(intval(date('j',$start+$i)),$date['dom']) &&
                 in_array(intval(date('n',$start+$i)),$date['month']) &&
                 in_array(intval(date('w',$start+$i)),$date['dow']) &&
                 in_array(intval(date('G',$start+$i)),$date['hours']) &&
-                in_array(intval(date('i',$start+$i)),$date['minutes'])
-
+                in_array(intval(date('i',$start+$i)),$date['minutes']) &&
+                date($compareDateFormat, $start) !== date($compareDateFormat, $start+$i)
                 ){
                     return $start+$i;
             }

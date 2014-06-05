@@ -1,6 +1,5 @@
 This is a simple cron notation parser. Returns the 
 nearest timestamp matching given criteria that is
-greater than or equal to given timestamp (current
-time() by default)
+greater than given timestamp (current time() by default)
  
 Eg.:   $timestamp = Crontab::parse('12 * * * 1-5');
