@@ -1,0 +1,19 @@
+{
+    "name": "jkonieczny/php-crontab",
+    "description": "Crontab format parser in php",
+    "type": "library",
+    "homepage": "https://github.com/jkonieczny/PHP-Crontab",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Jan Konieczny",
+            "email": "jkonieczny@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.1.0"
+    },
+    "autoload": {
+        "classmap": ["Crontab.class.php"]
+    }
+}
